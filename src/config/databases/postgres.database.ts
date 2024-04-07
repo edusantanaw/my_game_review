@@ -17,7 +17,7 @@ export const DatabaseConfig: TypeOrmModuleOptions = {
   database: PGDATABASE,
   synchronize: true,
   logging: false,
-  entities: [...entities],
+  entities: entities,
   migrations: [],
   subscribers: [],
 };

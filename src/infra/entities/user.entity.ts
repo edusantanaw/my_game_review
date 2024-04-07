@@ -1,16 +1,16 @@
 import { Column, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity({ name: 'users' })
+@Entity()
 export default class UserPersistenceEntity {
-  @PrimaryColumn()
+  @PrimaryColumn({ type: 'uuid' })
   id: string;
-  @Column({ nullable: false, type: 'uuid' })
+  @Column({ nullable: false, type: 'text' })
   name: string;
-  @Column({ unique: true, nullable: true, type: 'text' })
+  @Column({ unique: true, nullable: false, type: 'text' })
   email: string;
   @Column({ nullable: false, type: 'text' })
   password: string;
-  @Column({ nullable: false, type: 'mediumtext' })
+  @Column({ nullable: false, type: 'text' })
   roles: string;
   @Column({ type: 'int', default: 0 })
   deleted: number;

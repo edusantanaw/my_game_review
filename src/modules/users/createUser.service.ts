@@ -1,21 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { DomainException } from 'src/shared/exceptions/domain.exception';
+import { CreateUserGatewayAbs } from './@gateways/createUser.gateway';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { UserEntity } from './entity/user.entity';
-import { DomainException } from 'src/shared/exceptions/domain.exception';
-
-abstract class UserRepositoryAbs {
-  abstract loadByEmail(email: string): Promise<UserEntity | null>;
-  abstract create(data: UserEntity): Promise<UserEntity>;
-}
-
-abstract class GenerateHashAbs {
-  abstract generate(value: string): Promise<string>;
-}
+import { GenerateHashAbs } from '../@utils/encrypter.utils';
 
 @Injectable()
 export class CreateUserService {
   constructor(
-    protected userRepository: UserRepositoryAbs,
+    protected userRepository: CreateUserGatewayAbs,
     protected encrypter: GenerateHashAbs,
   ) {}
   async create(data: CreateUserDto) {

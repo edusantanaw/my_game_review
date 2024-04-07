@@ -1,3 +1,5 @@
-import UserEntity from './user.entity';
+import UserPersistenceEntity from './user.entity';
 
-export default [UserEntity];
+const entities = [UserPersistenceEntity];
+
+export default entities;

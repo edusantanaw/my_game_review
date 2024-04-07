@@ -12,6 +12,7 @@ const PGDATABASE = process.env.PGDATABASE;
 const PGUSER = process.env.PGUSER;
 const PGPASSWORD = process.env.PGPASSWORD;
 const PGPORT = process.env.PGPORT;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export {
   ENVIRONMENT,
@@ -22,4 +23,5 @@ export {
   PGUSER,
   PGPORT,
   PGPASSWORD,
+  JWT_SECRET,
 };
