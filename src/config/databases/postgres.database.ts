@@ -1,5 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import 'reflect-metadata';
+import entities from 'src/infra/entities';
 
 const PGHOST = process.env.PGHOST;
 const PGDATABASE = process.env.PGDATABASE;
@@ -16,7 +17,7 @@ export const DatabaseConfig: TypeOrmModuleOptions = {
   database: PGDATABASE,
   synchronize: true,
   logging: false,
-  entities: [],
+  entities: [...entities],
   migrations: [],
   subscribers: [],
 };
