@@ -1,18 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { UserEntity } from '../users/entity/user.entity';
 import { DomainException } from 'src/shared/exceptions/domain.exception';
-
-abstract class LoadByEmailRepository<T> {
-  abstract loadByEmail(email: string): Promise<T | null>;
-}
-
-abstract class EncrypterCompare {
-  abstract compare(encrypted: string, value: string): Promise<boolean>;
-}
-
-abstract class GenerateAccessToken<T> {
-  abstract generate(payload: T): Promise<string>;
-}
+import { LoadByEmailRepository } from '../@gateways/loadByEmail.gateway';
+import { UserEntity } from '../users/entity/user.entity';
+import { EncrypterCompare } from '../@gateways/encrypter.gateway';
+import { GenerateAccessToken } from '../@gateways/jwt.gateway';
 
 @Injectable()
 export class AuthService {
