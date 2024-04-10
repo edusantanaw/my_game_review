@@ -2,9 +2,9 @@ import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common';
 import { DefaultException } from 'src/shared/exceptions/default.exception';
 import { DomainException } from 'src/shared/exceptions/domain.exception';
 import { Response } from 'express';
-import { NotFoundError } from 'rxjs';
+import { NotFoundException } from 'src/shared/exceptions/notFound.exception';
 
-@Catch(DefaultException)
+@Catch(DefaultException, DomainException, NotFoundException)
 export class DomainExceptionFilter implements ExceptionFilter {
   catch(exception: DefaultException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -13,7 +13,7 @@ export class DomainExceptionFilter implements ExceptionFilter {
       return response
         .status(400)
         .json({ message: exception.message, type: exception.typeError });
-    if (exception instanceof NotFoundError)
+    if (exception instanceof NotFoundException)
       return response
         .status(400)
         .json({ message: exception.message, type: exception.typeError });

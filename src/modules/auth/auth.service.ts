@@ -1,15 +1,19 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { DomainException } from 'src/shared/exceptions/domain.exception';
 import { LoadByEmailRepository } from '../@gateways/loadByEmail.gateway';
 import { UserEntity } from '../users/entity/user.entity';
 import { EncrypterCompare } from '../@utils/encrypter.utils';
 import { GenerateAccessToken } from '../@utils/jwt.utils';
+import { NotFoundException } from 'src/shared/exceptions/notFound.exception';
 
 @Injectable()
 export class AuthService {
   constructor(
+    @Inject('userRepository')
     protected userRepository: LoadByEmailRepository<UserEntity>,
+    @Inject('encrypter')
     protected encrypter: EncrypterCompare,
+    @Inject('jwtService')
     protected tokenGenerator: GenerateAccessToken<string>,
   ) {}
 

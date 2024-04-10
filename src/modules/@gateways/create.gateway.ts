@@ -1,3 +1,3 @@
-export class CreateGateway<T> {
-  create: (data: T) => Promise<T>;
+export abstract class CreateGateway<T> {
+  abstract create(data: T): Promise<T>;
 }

@@ -1,14 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { DomainException } from 'src/shared/exceptions/domain.exception';
+import { GenerateHashAbs } from '../@utils/encrypter.utils';
 import { CreateUserGatewayAbs } from './@gateways/createUser.gateway';
 import { CreateUserDto } from './dtos/createUser.dto';
 import { UserEntity } from './entity/user.entity';
-import { GenerateHashAbs } from '../@utils/encrypter.utils';
 
 @Injectable()
 export class CreateUserService {
   constructor(
+    @Inject('userRepository')
     protected userRepository: CreateUserGatewayAbs,
+    @Inject('encrypter')
     protected encrypter: GenerateHashAbs,
   ) {}
   async create(data: CreateUserDto) {
@@ -22,7 +24,7 @@ export class CreateUserService {
       ...data,
       password: hashedPass,
     });
-    await this.userRepository.create(user);
-    return user;
+    const created = await this.userRepository.create(user);
+    return created;
   }
 }

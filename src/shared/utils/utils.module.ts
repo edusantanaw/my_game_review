@@ -3,7 +3,13 @@ import { EncrypterUtil } from './encrypter';
 import { JwtUtil } from './jwt.utils';
 
 @Module({
-  providers: [EncrypterUtil, JwtUtil],
-  exports: [EncrypterUtil, JwtUtil],
+  providers: [
+    { provide: 'encrypter', useClass: EncrypterUtil },
+    { provide: 'jwtService', useClass: JwtUtil },
+  ],
+  exports: [
+    { provide: 'encrypter', useClass: EncrypterUtil },
+    { provide: 'jwtService', useClass: JwtUtil },
+  ],
 })
 export class UtilModule {}

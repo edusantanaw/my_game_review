@@ -31,7 +31,9 @@ export class UserDataMapper
       updatedAt: data.updatedAt,
       name: data.name,
       password: data.password,
-      roles: JSON.parse(data.roles) as Roles[],
+      roles: (JSON.parse(data.roles) as number[]).map(
+        (item) => Roles[item],
+      ) as any,
     };
   }
 }
