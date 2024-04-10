@@ -10,4 +10,8 @@ export class JwtUtil implements GenerateAccessToken<string> {
   generate(payload: string) {
     return this.jwtService.signAsync(payload, { secret: JWT_SECRET });
   }
+
+  verify(token: string) {
+    return this.jwtService.verify(token, { secret: JWT_SECRET });
+  }
 }

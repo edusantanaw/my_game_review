@@ -2,7 +2,7 @@ import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { AuthValidation } from './validation/auth.validation';
-import { DomainSchemaExceptionFilter } from 'src/config/swagger/deafultSchemaResponse';
+import { DomainSchemaExceptionFilter } from 'src/shared/swagger/deafultSchemaResponse';
 
 @Controller('/api')
 @ApiTags('auth')

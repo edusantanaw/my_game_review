@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post, UseGuards } from '@nestjs/common';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { DomainSchemaExceptionFilter } from 'src/shared/swagger/deafultSchemaResponse';
 import { CreateUserService } from './createUser.service';
 import { CreateUserValidation } from './validation/createUser.validation';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { DomainSchemaExceptionFilter } from 'src/config/swagger/deafultSchemaResponse';
-import { clear } from 'console';
+import { AuthGuard } from 'src/shared/guards/auth.guard';
 
 @Controller('/api/user')
 @ApiTags('user')
 @ApiResponse(DomainSchemaExceptionFilter)
+@UseGuards(AuthGuard)
 export class UserController {
   constructor(protected createUserService: CreateUserService) {}
 

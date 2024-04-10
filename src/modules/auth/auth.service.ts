@@ -23,7 +23,7 @@ export class AuthService {
     const isPassEquals = await this.encrypter.compare(user.password, password);
     if (!isPassEquals) throw new DomainException('E-mail / senha invalido!');
     const accessToken = await this.tokenGenerator.generate(
-      `${user.id}:${user.email}`,
+      `${user.id}:${user.roles.join(',')}`,
     );
     return {
       accessToken,
