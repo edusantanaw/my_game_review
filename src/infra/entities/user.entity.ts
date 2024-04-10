@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'users' })
 export default class UserPersistenceEntity {
   @PrimaryColumn({ type: 'uuid' })
   id: string;

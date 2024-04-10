@@ -15,11 +15,9 @@ export class RolesGuard extends AuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<Request>();
     await this.validate(request);
-    if (request) {
-      const userRoles = request['userRoles'] as string[];
-      for (const item of this.roles) {
-        if (userRoles.includes(item)) return true;
-      }
+    const userRoles = request['userRoles'] as string[];
+    for (const item of this.roles) {
+      if (userRoles.includes(item)) return true;
     }
     throw new ForbiddenException();
   }
