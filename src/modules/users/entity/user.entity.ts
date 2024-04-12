@@ -13,14 +13,14 @@ type Data = {
 };
 
 export class UserEntity {
-  readonly id: string;
-  readonly name: string;
-  readonly email: string;
-  readonly password: string;
-  readonly createdAt: Date;
-  readonly updatedAt: Date;
-  readonly deleted: boolean = false;
-  readonly roles: Roles[] = [];
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+  deleted: boolean = false;
+  roles: Roles[] = [];
 
   constructor(data: Data) {
     this.id = data.id ?? randomUUID();

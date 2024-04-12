@@ -45,8 +45,7 @@ export class UserController {
   @HttpCode(201)
   async create(@Body() data: CreateUserValidation) {
     const user = await this.createUserService.create(data);
-    const { password, ...rest } = user;
-    return rest;
+    return user;
   }
 
   @Get('/loadByToken')

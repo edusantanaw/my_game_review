@@ -20,16 +20,13 @@ export class UserGateway {
   }
 
   async loadByEmail(email: string) {
-    console.log(1);
     const user = await this.repository.findOne({ where: { email } });
-    console.log(user);
     return user ? this.dataMapper.toEntity(user) : null;
   }
 
   async loadById(id: string) {
     const userPersistence = await this.repository.findOne({ where: { id } });
     if (!userPersistence) return null;
-    console.log(userPersistence);
     return this.dataMapper.toEntity(userPersistence);
   }
 }
