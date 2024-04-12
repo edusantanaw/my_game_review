@@ -25,6 +25,7 @@ export class CreateUserService {
       password: hashedPass,
     });
     const created = await this.userRepository.create(user);
+    delete created.password;
     return created;
   }
 }
