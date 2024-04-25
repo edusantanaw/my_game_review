@@ -18,4 +18,9 @@ export default class GamePersistenceEntity {
   createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
+  @Column({ nullable: true, type: 'text' })
+  search?: string;
+  constructor() {
+    this.search = `${this.name},${this.publisher},${this.release}`;
+  }
 }

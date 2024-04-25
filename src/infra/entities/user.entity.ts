@@ -18,4 +18,9 @@ export default class UserPersistenceEntity {
   createdAt: Date;
   @UpdateDateColumn()
   updatedAt: Date;
+  @Column({ nullable: true, type: 'text' })
+  search?: string;
+  constructor() {
+    this.search = `${this.name},${this.email}`;
+  }
 }

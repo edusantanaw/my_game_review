@@ -9,6 +9,7 @@ export class UserGateway {
   readonly repository: Repository<UserPersistenceEntity>;
   readonly dataMapper = new UserDataMapper();
   constructor(dataSource: DataSource) {
+    console.log('user', dataSource);
     this.repository = dataSource.getRepository(UserPersistenceEntity);
   }
 

@@ -1,11 +1,7 @@
 import UserPersistenceEntity from 'src/infra/entities/user.entity';
 import { UserEntity } from 'src/modules/users/entity/user.entity';
 import { Roles } from 'src/shared/enums/roles';
-
-interface IDataMapper<Entity, Persistence> {
-  toPersistence: (data: Entity) => Persistence;
-  toEntity: (data: Persistence) => Entity;
-}
+import { IDataMapper } from './dataMapper';
 
 export class UserDataMapper
   implements IDataMapper<UserEntity, UserPersistenceEntity>
